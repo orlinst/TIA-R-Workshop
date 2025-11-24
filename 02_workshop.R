@@ -7,7 +7,7 @@ devtools::session_info()
 
 #loading the nass.corn dataset
 data <- nass.corn
-data1 = cramer.cucumber
+data1 <- cramer.cucumber
 
 #intall and load dplyr
 install.packages("dplyr")
@@ -38,17 +38,15 @@ library(summarytools)
 dfSummary(data)
 view(dfSummary(data, style = "grid", graph.magnif = 0.82, varnumbers = FALSE))
 #file = "data_summary.html", report.title = "Data summary"
-
-
-#drop the unused levels
-data_state <- droplevels(data_state)
-
 #max.distinct.values = 50
 #valid.col = F
 #graph.col = F
 #na.col = 
 #class = T
 #graph.col =
+
+#drop the unused levels
+data_state <- droplevels(data_state)
 
 descr(data)
 descr(data,
@@ -61,7 +59,7 @@ bystate <- with(data_state, stby(data   = data_state,
                 FUN     = descr,
                 stats   = "common",
                 transpose = FALSE))
-view(bystate, file   = "descr_by_state.html") #saving the file
+view(bystate, file   = "descr_by_state.html") #saving the file or use the Viewer
 
 
 #Same but with psych - easy for on the go
@@ -88,7 +86,7 @@ a
 ggpairs(data)
 ggpairs(data, cardinality_threshold = 48)
 
-#diag = list(continuous = wrap("barDiag", bins = 15, fill = "blue")
+#diag = list(continuous = wrap("barDiag", bins = 15, fill = "blue") to add histogram on the diagonal instead of a density plot
 
 #switch to data_state
 ggpairs(data_state)
@@ -188,9 +186,8 @@ a + guides(alpha = "none") +
 #https://ggplot2.tidyverse.org/reference/labs.html - for labs
 #https://ggplot2.tidyverse.org/reference/theme.html - for theme
 
-#Correlations
+#Correlations (use data and data1)
 library(easystats)
-# data <- mtcars
 result <- correlation(data) #method = "spearman" / "pearson" - spearman for non-normal
 summary(result)
 
@@ -290,3 +287,4 @@ detach("package:MASS", unload = TRUE)
 # nass.wheat
 # nass.rice
 # nass.soybean
+
